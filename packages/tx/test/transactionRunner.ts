@@ -1,4 +1,4 @@
-import Tx from '../src/transaction'
+import Transaction from '../src/transaction'
 import * as tape from 'tape'
 import { toBuffer } from 'ethereumjs-util'
 import * as minimist from 'minimist'
@@ -43,7 +43,7 @@ tape('TransactionTests', (t) => {
             const shouldBeInvalid = Object.keys(forkTestData).length === 0
             try {
               const rawTx = toBuffer(testData.rlp)
-              const tx = new Tx(rawTx, {
+              const tx = Transaction.fromRlpSerializedTx(rawTx, {
                 hardfork: forkNameMap[forkName],
                 chain: 1,
               })

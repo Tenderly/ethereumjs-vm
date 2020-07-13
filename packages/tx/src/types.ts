@@ -18,7 +18,8 @@ export type PrefixedHexString = string
 export type BufferLike = Buffer | TransformableToBuffer | PrefixedHexString | number
 
 /**
- * A transaction's data.
+ * An object with an optional field with each of the transaction's values.
+ * These can be represented with any BufferLike compatible type.
  */
 export interface TxData {
   /**
@@ -68,6 +69,21 @@ export interface TxData {
 }
 
 /**
+ * An object with all of the transaction's values represented as buffers.
+ */
+export interface TxValues {
+  nonce: Buffer
+  gasLimit: Buffer
+  gasPrice: Buffer
+  to: Buffer
+  value: Buffer
+  data: Buffer
+  v: Buffer
+  r: Buffer
+  s: Buffer
+}
+
+/**
  * The data of a fake (self-signing) transaction.
  */
 export interface FakeTxData extends TxData {
@@ -78,11 +94,11 @@ export interface FakeTxData extends TxData {
 }
 
 /**
- * An object to set to which blockchain the blocks and their headers belong. This could be specified
- * using a Common object, or `chain` and `hardfork`. Defaults to mainnet without specifying a
- * hardfork.
+ * An object to set to which blockchain the blocks and their headers belong.
+ * This could be specified using a Common object, or `chain` and `hardfork`.
+ * Defaults to mainnet without specifying a hardfork.
  */
-export interface TransactionOptions {
+export interface TxOptions {
   /**
    * A Common object defining the chain and the hardfork a transaction belongs to.
    */

@@ -18,7 +18,7 @@ const customCommon = Common.forCustomChain(
 
 // We pass our custom Common object whenever we create a transaction
 
-const tx = new Transaction(
+const tx = Transaction.fromTxData(
   {
     nonce: 0,
     gasPrice: 100,

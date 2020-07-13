@@ -91,7 +91,7 @@ async function deployContract(
   // The contract params should be abi-encoded and appended to the deployment bytecode.
   const params = abi.rawEncode(['string'], [greeting])
 
-  const tx = new Transaction({
+  const tx = Transaction.fromTxData({
     value: 0,
     gasLimit: 2000000, // We assume that 2M is enough,
     gasPrice: 1,
@@ -118,7 +118,7 @@ async function setGreeting(
 ) {
   const params = abi.rawEncode(['string'], [greeting])
 
-  const tx = new Transaction({
+  const tx = Transaction.fromTxData({
     to: contractAddress,
     value: 0,
     gasLimit: 2000000, // We assume that 2M is enough,

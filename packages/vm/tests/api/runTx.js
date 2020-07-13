@@ -167,7 +167,7 @@ function getTransaction(
     chainId: 3,
   }
 
-  const tx = new Transaction(txParams)
+  const tx = Transaction.fromTxData(txParams)
   if (sign) {
     tx.sign(privateKey)
   }

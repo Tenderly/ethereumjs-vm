@@ -2,11 +2,12 @@
 // project is developed in typescript. Install the dependencies and run `npx ts-node examples/transactions.ts`
 
 import { Transaction } from '../src'
+import { toBuffer } from 'ethereumjs-util'
 
 // We create an unsigned transaction.
 // Notice we don't set the `to` field because we are creating a new contract.
 // This transaction's chain is set to mainnet
-const tx = new Transaction({
+const tx = Transaction.fromTxData({
   nonce: 0,
   gasPrice: 100,
   gasLimit: 1000000000,
@@ -50,7 +51,7 @@ const rawTx = [
   '0x5bd428537f05f9830e93792f90ea6a3e2d1ee84952dd96edbae9f658f831ab13',
 ]
 
-const tx2 = new Transaction(rawTx) // This is also a maninnet transaction
+const tx2 = Transaction.fromValuesArray(rawTx.map(toBuffer)) // This is also a maninnet transaction
 
 // Note rlp.decode will actually produce an array of buffers `new Transaction` will
 // take either an array of buffers or an array of hex strings.

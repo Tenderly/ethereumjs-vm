@@ -96,7 +96,7 @@ var format = (exports.format = function (a, toZero, isHex) {
  * @returns {Object}        object that will be passed to VM.runTx function
  */
 exports.makeTx = function (txData, hf) {
-  var tx = new Transaction({}, { hardfork: hf })
+  var tx = Transaction.fromTxData({}, { hardfork: hf })
   tx.nonce = format(txData.nonce)
   tx.gasPrice = format(txData.gasPrice)
   tx.gasLimit = format(txData.gasLimit)

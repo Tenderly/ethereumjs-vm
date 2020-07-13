@@ -1,7 +1,7 @@
 import { BaseTrie as Trie } from 'merkle-patricia-tree'
 import Common from '@ethereumjs/common'
-import { BN, rlp, keccak256, KECCAK256_RLP, baToJSON } from 'ethereumjs-util'
-import { Transaction, TransactionOptions } from '@ethereumjs/tx'
+import { BN, rlp, keccak256, KECCAK256_RLP, baToJSON, toBuffer } from 'ethereumjs-util'
+import { Transaction, TxOptions } from '@ethereumjs/tx'
 import { BlockHeader } from './header'
 import { Blockchain, BlockData, ChainOptions } from './types'
 
@@ -76,7 +76,10 @@ export class Block {
     for (let i = 0; i < rawTransactions.length; i++) {
       // TODO: Pass the common object instead of the options. It can't be implemented right now
       // because the hardfork may be `null`. Read the above TODO for more info.
-      const tx = new Transaction(rawTransactions[i], chainOptions as TransactionOptions)
+      const tx = Transaction.fromValuesArray(
+        rawTransactions[i] as Buffer[],
+        chainOptions as TxOptions,
+      )
       this.transactions.push(tx)
     }
   }
@@ -119,7 +122,7 @@ export class Block {
   serialize(rlpEncode = true) {
     const raw = [
       this.header.raw,
-      this.transactions.map((tx) => tx.raw),
+      this.transactions.map((tx) => tx.serialize()),
       this.uncleHeaders.map((uh) => uh.raw),
     ]
 
@@ -243,7 +246,7 @@ export class Block {
     if (labeled) {
       return {
         header: this.header.toJSON(true),
-        transactions: this.transactions.map((tx) => tx.toJSON(true)),
+        transactions: this.transactions.map((tx) => tx.toJSON()),
         uncleHeaders: this.uncleHeaders.forEach((uh) => uh.toJSON(true)),
       }
     } else {

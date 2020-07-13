@@ -49,7 +49,7 @@ async function main() {
 }
 
 async function runTx(vm: VM, rawTx: any, privateKey: Buffer) {
-  const tx = new Transaction(rawTx)
+  const tx = Transaction.fromRlpSerializedTx(rawTx)
 
   tx.sign(privateKey)
 
