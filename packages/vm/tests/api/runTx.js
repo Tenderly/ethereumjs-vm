@@ -45,7 +45,10 @@ tape('runTx', (t) => {
   t.test('should fail to run without signature', async (st) => {
     const tx = getTransaction(false, true)
     shouldFail(st, suite.runTx({ tx }), (e) =>
-      st.ok(e.message.toLowerCase().includes('signature'), 'should fail with appropriate error'),
+      st.ok(
+        e.message.includes('This transaction is not signed'),
+        'should fail with appropriate error',
+      ),
     )
     st.end()
   })
@@ -68,7 +71,7 @@ tape('should run simple tx without errors', async (t) => {
 
   const tx = getTransaction(true, true)
   const acc = createAccount()
-  await suite.putAccount(tx.from.toString('hex'), acc)
+  await suite.putAccount(tx.getSenderAddress(), acc)
 
   let res = await suite.runTx({ tx, populateCache: true })
   t.true(res.gasUsed.gt(0), 'should have used some gas')
@@ -83,7 +86,7 @@ tape('should fail when account balance overflows (call)', async (t) => {
   const tx = getTransaction(true, true, '0x01')
   const from = createAccount()
   const to = createAccount('0x00', ethUtil.MAX_INTEGER)
-  await suite.putAccount(tx.from.toString('hex'), from)
+  await suite.putAccount(tx.getSenderAddress(), from)
   await suite.putAccount(tx.to, to)
 
   const res = await suite.runTx({ tx })
@@ -101,7 +104,7 @@ tape('should fail when account balance overflows (create)', async (t) => {
   const tx = getTransaction(true, true, '0x01', true)
   const from = createAccount()
   const to = createAccount('0x00', ethUtil.MAX_INTEGER)
-  await suite.putAccount(tx.from.toString('hex'), from)
+  await suite.putAccount(tx.getSenderAddress(), from)
   await suite.putAccount(contractAddress, to)
 
   const res = await suite.runTx({ tx })
@@ -120,7 +123,7 @@ tape('should fail when account balance overflows (create)', async (t) => {
 
   const tx = getTransaction(true, true)
   const acc = createAccount()
-  await suite.putAccount(tx.from.toString('hex'), acc)
+  await suite.putAccount(tx.getSenderAddress(), acc)
   await suite.cacheFlush()
   suite.vm.stateManager.cache.clear()
 
@@ -160,10 +163,10 @@ function getTransaction(
   const txParams = {
     nonce: '0x00',
     gasPrice: 100,
-    gasLimit: 1000,
-    to: to,
-    value: value,
-    data: data,
+    gasLimit: 90000,
+    to,
+    value,
+    data,
     chainId: 3,
   }
 

@@ -67,15 +67,15 @@ export default class Transaction {
 
     return new Transaction(
       {
-        nonce: values[0] || new Buffer([]),
-        gasPrice: values[1] || new Buffer([]),
-        gasLimit: values[2] || new Buffer([]),
-        to: values[3] || new Buffer([]),
-        value: values[4] || new Buffer([]),
-        data: values[5] || new Buffer([]),
-        v: values[6] || new Buffer([]),
-        r: values[7] || new Buffer([]),
-        s: values[8] || new Buffer([]),
+        nonce: values[0] || Buffer.from([]),
+        gasPrice: values[1] || Buffer.from([]),
+        gasLimit: values[2] || Buffer.from([]),
+        to: values[3] || Buffer.from([]),
+        value: values[4] || Buffer.from([]),
+        data: values[5] || Buffer.from([]),
+        v: values[6] || Buffer.from([]),
+        r: values[7] || Buffer.from([]),
+        s: values[8] || Buffer.from([]),
       },
       opts,
     )
@@ -232,7 +232,7 @@ export default class Transaction {
   }
 
   /**
-   * the minimum amount of gas the tx must have (DataFee + TxFee + Creation Fee)
+   * The minimum amount of gas the tx must have (DataFee + TxFee + Creation Fee)
    */
   getBaseFee(): BN {
     const fee = this.getDataFee().iaddn(this._common.param('gasPrices', 'tx'))
@@ -243,7 +243,7 @@ export default class Transaction {
   }
 
   /**
-   * the up front amount that an account must have for this transaction to be valid
+   * The up front amount that an account must have for this transaction to be valid
    */
   getUpfrontCost(): BN {
     return new BN(this.gasLimit).imul(new BN(this.gasPrice)).iadd(new BN(this.value))
@@ -306,7 +306,8 @@ export default class Transaction {
   }
 
   public isSigned(): boolean {
-    return this.v.length > 0 && this.r.length > 0 && this.s.length > 0
+    const { v, r, s } = this
+    return v.length > 0 && r.length > 0 && s.length > 0
   }
 
   get nonce(): Buffer {

@@ -76,10 +76,13 @@ export class Block {
     for (let i = 0; i < rawTransactions.length; i++) {
       // TODO: Pass the common object instead of the options. It can't be implemented right now
       // because the hardfork may be `null`. Read the above TODO for more info.
-      const tx = Transaction.fromValuesArray(
-        rawTransactions[i] as Buffer[],
-        chainOptions as TxOptions,
-      )
+      const txData = rawTransactions[i]
+      let tx
+      if (Array.isArray(txData)) {
+        tx = Transaction.fromValuesArray(txData as Buffer[], chainOptions as TxOptions)
+      } else {
+        tx = Transaction.fromRlpSerializedTx(txData as Buffer, chainOptions as TxOptions)
+      }
       this.transactions.push(tx)
     }
   }
