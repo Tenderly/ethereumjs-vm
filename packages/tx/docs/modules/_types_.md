@@ -6,10 +6,10 @@
 
 ### Interfaces
 
-* [FakeTxData](../interfaces/_types_.faketxdata.md)
-* [TransactionOptions](../interfaces/_types_.transactionoptions.md)
 * [TransformableToBuffer](../interfaces/_types_.transformabletobuffer.md)
 * [TxData](../interfaces/_types_.txdata.md)
+* [TxOptions](../interfaces/_types_.txoptions.md)
+* [TxValues](../interfaces/_types_.txvalues.md)
 
 ### Type aliases
 

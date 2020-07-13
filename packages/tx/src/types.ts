@@ -84,16 +84,6 @@ export interface TxValues {
 }
 
 /**
- * The data of a fake (self-signing) transaction.
- */
-export interface FakeTxData extends TxData {
-  /**
-   * The sender of the Tx.
-   */
-  from?: BufferLike
-}
-
-/**
  * An object to set to which blockchain the blocks and their headers belong.
  * This could be specified using a Common object, or `chain` and `hardfork`.
  * Defaults to mainnet without specifying a hardfork.

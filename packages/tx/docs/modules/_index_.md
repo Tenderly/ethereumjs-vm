@@ -6,15 +6,14 @@
 
 ### Classes
 
-* [FakeTransaction](../classes/_index_.faketransaction.md)
 * [Transaction](../classes/_index_.transaction.md)
 
 ### Interfaces
 
-* [FakeTxData](../interfaces/_index_.faketxdata.md)
-* [TransactionOptions](../interfaces/_index_.transactionoptions.md)
 * [TransformableToBuffer](../interfaces/_index_.transformabletobuffer.md)
 * [TxData](../interfaces/_index_.txdata.md)
+* [TxOptions](../interfaces/_index_.txoptions.md)
+* [TxValues](../interfaces/_index_.txvalues.md)
 
 ### Type aliases
 
