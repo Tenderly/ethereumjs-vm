@@ -10,14 +10,15 @@
 
 # INSTALL
 
-`npm install ethereumjs-tx`
+`npm install @ethereumjs/tx`
 
 # USAGE
 
-- [example](https://github.com/ethereumjs/ethereumjs-tx/blob/master/examples/transactions.ts)
+- [Example](./examples/transactions.ts)
 
 ```javascript
-const EthereumTx = require('@ethereumjs/tx').Transaction
+import Transaction from '@ethereumjs/tx'
+
 const privateKey = Buffer.from(
   'e331b6d69882b4cb4ea581d88e0b604039a3de5967688d3dcffdd2270c0fd109',
   'hex',
@@ -33,20 +34,20 @@ const txParams = {
 }
 
 // The second parameter is not necessary if these values are used
-const tx = new EthereumTx(txParams, { chain: 'mainnet', hardfork: 'petersburg' })
+const tx = Transaction.fromTxData(txParams, { chain: 'mainnet', hardfork: 'petersburg' })
 tx.sign(privateKey)
 const serializedTx = tx.serialize()
 ```
 
 # Chain and Hardfork Support
 
-The `Transaction` and `FakeTransaction` constructors receives a second parameter that lets you specify the chain and hardfork
+The `Transaction` constructor receives a second parameter that lets you specify the chain and hardfork
 to be used. By default, `mainnet` and `petersburg` will be used.
 
 There are two ways of customizing these. The first one, as shown in the previous section, is by
 using an object with `chain` and `hardfork` names. You can see en example of this in [./examples/ropsten-tx.ts](./examples/ropsten-tx.ts).
 
-The second option is by passing the option `common` set to an instance of [@ethereumjs/common](https://github.com/ethereumjs/ethereumjs-common)' Common. This is specially useful for custom networks or chains/hardforks not yet supported by `ethereumjs-common`. You can see en example of this in [./examples/custom-chain-tx.ts](./examples/custom-chain-tx.ts).
+The second option is by passing the option `common` set to an instance of [@ethereumjs/common](https://github.com/ethereumjs/ethereumjs-vm/blob/master/packages/common)' Common. This is specially useful for custom networks or chains/hardforks not yet supported by `common`. You can see en example of this in [examples/custom-chain-tx.ts](./examples/custom-chain-tx.ts).
 
 ## MuirGlacier Support
 
