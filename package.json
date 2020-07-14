@@ -57,7 +57,7 @@
     "ethereumjs-blockchain": "^4.0.3",
     "ethereumjs-common": "^1.5.0",
     "ethereumjs-tx": "^2.1.2",
-    "@neburo/ethereumjs-util": "^6.2.0",
+    "@neburo/ethereumjs-util": "^6.2.1",
     "fake-merkle-patricia-tree": "^1.0.1",
     "functional-red-black-tree": "^1.0.1",
     "merkle-patricia-tree": "^2.3.2",
