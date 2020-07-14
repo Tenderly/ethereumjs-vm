@@ -1,6 +1,6 @@
 const promisify = require('util.promisify')
 const tape = require('tape')
-const util = require('ethereumjs-util')
+const util = require('@neburo/ethereumjs-util')
 const Common = require('ethereumjs-common').default
 const { StateManager } = require('../../../dist/state')
 const { createAccount } = require('../utils')

@@ -1,5 +1,5 @@
 import * as assert from 'assert'
-import { zeros, keccak256 } from 'ethereumjs-util'
+import { zeros, keccak256 } from '@neburo/ethereumjs-util'
 
 const BYTE_SIZE = 256
 

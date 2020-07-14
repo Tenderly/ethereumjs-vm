@@ -2,7 +2,7 @@ import VM from '../../'
 
 import Account from 'ethereumjs-account'
 import Blockchain from 'ethereumjs-blockchain'
-import * as utils from 'ethereumjs-util'
+import * as utils from '@neburo/ethereumjs-util'
 import { promisify } from 'util'
 import PStateManager from '../../lib/state/promisified'
 

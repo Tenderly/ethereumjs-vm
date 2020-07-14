@@ -1,5 +1,5 @@
 import BN = require('bn.js')
-import * as utils from 'ethereumjs-util'
+import * as utils from '@neburo/ethereumjs-util'
 import { ERROR, VmError } from '../exceptions'
 import { RunState } from './interpreter'
 

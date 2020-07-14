@@ -1,5 +1,5 @@
 import BN = require('bn.js')
-import { toBuffer, bufferToInt } from 'ethereumjs-util'
+import { toBuffer, bufferToInt } from '@neburo/ethereumjs-util'
 import { encode } from 'rlp'
 import VM from './index'
 import Bloom from './bloom'

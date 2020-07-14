@@ -6,7 +6,7 @@ import {
   MAX_INTEGER,
   toBuffer,
   zeros,
-} from 'ethereumjs-util'
+} from '@neburo/ethereumjs-util'
 import Account from 'ethereumjs-account'
 import { ERROR, VmError } from '../exceptions'
 import PStateManager from '../state/promisified'

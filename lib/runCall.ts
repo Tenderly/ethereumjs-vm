@@ -1,5 +1,5 @@
 import BN = require('bn.js')
-import { zeros } from 'ethereumjs-util'
+import { zeros } from '@neburo/ethereumjs-util'
 import VM from './index'
 import TxContext from './evm/txContext'
 import Message from './evm/message'

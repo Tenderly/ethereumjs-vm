@@ -1,7 +1,7 @@
 const Set = require('core-js-pure/es/set')
 const Trie = require('merkle-patricia-tree/secure.js')
 const asyncLib = require('async')
-import * as utils from 'ethereumjs-util'
+import * as utils from '@neburo/ethereumjs-util'
 import BN = require('bn.js')
 import { encode, decode } from 'rlp'
 import Common from 'ethereumjs-common'

@@ -1,6 +1,6 @@
 const tape = require('tape')
 const Bloom = require('../../dist/bloom').default
-const utils = require('ethereumjs-util')
+const utils = require('@neburo/ethereumjs-util')
 
 const byteSize = 256
 

@@ -1,6 +1,6 @@
 import VM from '../..'
 import Account from 'ethereumjs-account'
-import * as utils from 'ethereumjs-util'
+import * as utils from '@neburo/ethereumjs-util'
 import PStateManager from '../../lib/state/promisified'
 import { Transaction } from 'ethereumjs-tx'
 

@@ -1,5 +1,5 @@
 import BN = require('bn.js')
-import { toBuffer } from 'ethereumjs-util'
+import { toBuffer } from '@neburo/ethereumjs-util'
 import Account from 'ethereumjs-account'
 import Blockchain from 'ethereumjs-blockchain'
 import Common from 'ethereumjs-common'
